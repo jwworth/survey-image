@@ -46,13 +46,16 @@ class SurveyImage extends Component {
 
 const InnerScoreForm = props => {
   const scoreTree = props.values.scoreTree;
+  let questionNumber = 0;
   return (
     <form>
       {scoreTree.map(scoreRow => {
-        return scoreRow.map(score => {
+        return scoreRow.map((score, index) => {
+          questionNumber++;
           return (
             <div>
-              <label>Question</label><input type="text" value={score} />
+              <label>Question #{questionNumber}:</label>
+              <input type="text" value={score} />
             </div>
           );
         });
