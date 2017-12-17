@@ -74,14 +74,14 @@ const ScoreTable = () => {
   };
 
   const scoreRow = () => {
-    return scoreTree.map(row => {
-      return <tr>{scoreCells(row)}</tr>;
+    return scoreTree.map((row, index) => {
+      return <tr key={index}>{scoreCells(row)}</tr>;
     });
   };
 
   const scoreCells = row => {
-    return row.map(score => {
-      return <td style={{ background: scoreToColor(score) }} />;
+    return row.map((score, index) => {
+      return <td key={index} style={{ background: scoreToColor(score) }} />;
     });
   };
 
