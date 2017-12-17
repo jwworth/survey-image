@@ -66,7 +66,10 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
             <div key={name}>
               <label>Question #{questionNumber}:</label>
               <input
-                type="text"
+                type="range"
+                max="5"
+                min="0"
+                step="1"
                 name={name}
                 id={name}
                 value={scoreTree[scoreRowIndex][scoreIndex]}
