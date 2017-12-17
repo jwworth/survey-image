@@ -78,7 +78,7 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
     'The simple thought of a full work day makes me ill.',
     'I feel energetic.',
     'The amount of stress I deal with at work is more than I can handle.',
-    'I think I work far too muc',
+    'I think I work far too much.',
     'My work brings me satisfaction.',
     'Overall, I simply feel really exhausted.',
     'I find joy in my work.',
