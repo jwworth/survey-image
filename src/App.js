@@ -4,12 +4,6 @@ import { withFormik } from 'formik';
 import './normalize.css';
 
 class App extends Component {
-  render() {
-    return <SurveyImage />;
-  }
-}
-
-class SurveyImage extends Component {
   constructor(props) {
     super(props);
 
