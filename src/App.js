@@ -37,8 +37,14 @@ const ScoreTable = () => {
     }
   };
 
-  const scoreRow = index => {
-    return scoreTree[index].map(score => {
+  const scoreRow = () => {
+    return scoreTree.map(row => {
+      return <tr>{scoreCells(row)}</tr>;
+    });
+  };
+
+  const scoreCells = row => {
+    return row.map(score => {
       return <td style={{ background: scoreToColor(score) }} />;
     });
   };
@@ -52,11 +58,7 @@ const ScoreTable = () => {
         height: '500px',
       }}
     >
-      <tr>{scoreRow(0)}</tr>
-      <tr>{scoreRow(1)}</tr>
-      <tr>{scoreRow(2)}</tr>
-      <tr>{scoreRow(3)}</tr>
-      <tr>{scoreRow(4)}</tr>
+      {scoreRow()}
     </table>
   );
 };
