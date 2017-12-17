@@ -14,11 +14,13 @@ class SurveyImage extends Component {
 
     this.state = {
       scoreTree: [
-        [0, 1, 2, 3, 0],
-        [0, 5, 2, 3, 1],
-        [0, 4, 2, 3, 0],
-        [0, 1, 2, 3, 5],
-        [5, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
       ],
     };
   }
@@ -32,14 +34,14 @@ class SurveyImage extends Component {
       <div>
         <h1>Survey Image</h1>
         <h3>
-          For each question mark a number which represents your situation most closely:
+          For each question, choose the number which represents your answer:
         </h3>
         <p>
-          0 = Not at All
-          1 = Somewhat
-          2 = Moderately
-          3 = A Lot
-          4 = Extremely
+          0 = Most of the time
+          1 = Often
+          2 = Sometimes
+          3 = Rarely
+          4 = Never
         </p>
         <ScoreForm
           scoreTree={this.state.scoreTree}
@@ -61,6 +63,7 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
         return scoreRow.map((score, scoreIndex) => {
           questionNumber++;
           const name = `scoreTree[${scoreRowIndex}][${scoreIndex}]`;
+          const value = scoreTree[scoreRowIndex][scoreIndex];
 
           return (
             <div key={name}>
@@ -71,8 +74,7 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
                 min="0"
                 step="1"
                 name={name}
-                id={name}
-                value={scoreTree[scoreRowIndex][scoreIndex]}
+                value={value}
                 onChange={e => {
                   let newScores = scoreTree;
                   const score = Number(e.target.value);
@@ -81,6 +83,7 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
                   updateScoreTree(newScores);
                 }}
               />
+              Score: {value}
             </div>
           );
         });
