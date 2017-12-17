@@ -23,6 +23,10 @@ class SurveyImage extends Component {
     };
   }
 
+  updateScoreTree = scoreTree => {
+    this.setState({ scoreTree });
+  };
+
   render() {
     return (
       <div>
@@ -37,14 +41,17 @@ class SurveyImage extends Component {
           3 = A Lot
           4 = Extremely
         </p>
-        <ScoreForm scoreTree={this.state.scoreTree} />
+        <ScoreForm
+          scoreTree={this.state.scoreTree}
+          updateScoreTree={this.updateScoreTree}
+        />
         <ScoreTable scoreTree={this.state.scoreTree} />
       </div>
     );
   }
 }
 
-const InnerScoreForm = ({ values, setFieldValue, setValues }) => {
+const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
   const { scoreTree } = values;
   let questionNumber = 0;
 
@@ -64,10 +71,11 @@ const InnerScoreForm = ({ values, setFieldValue, setValues }) => {
                 id={name}
                 value={scoreTree[scoreRowIndex][scoreIndex]}
                 onChange={e => {
-                  const { score } = e.target.value;
                   let newScores = scoreTree;
+                  const score = Number(e.target.value);
                   newScores[scoreRowIndex][scoreIndex] = score;
                   setFieldValue('scoreTree', newScores);
+                  updateScoreTree(newScores);
                 }}
               />
             </div>
@@ -80,6 +88,10 @@ const InnerScoreForm = ({ values, setFieldValue, setValues }) => {
 
 const ScoreForm = withFormik({
   mapPropsToValues: ({ scoreTree }) => ({ scoreTree }),
+
+  updateScoreTree: (scoreTree, { props }) => {
+    props.updateScoreTree(scoreTree);
+  },
 })(InnerScoreForm);
 
 const ScoreTable = props => {
