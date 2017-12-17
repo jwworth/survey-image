@@ -148,22 +148,7 @@ const ScoreForm = withFormik({
 })(InnerScoreForm);
 
 const ScoreTable = props => {
-  const scoreToColor = score => {
-    switch (score) {
-      case 1:
-        return '#880000';
-      case 2:
-        return '#A80000';
-      case 3:
-        return '#C80000';
-      case 4:
-        return '#E80000';
-      case 5:
-        return '#FF0000';
-      default:
-        return '#fff';
-    }
-  };
+  const colors = ['#880000', '#A80000', '#C80000', '#E80000', '#FF0000'];
 
   const scoreRow = scoreTree => {
     return scoreTree.map((row, index) => {
@@ -173,7 +158,7 @@ const ScoreTable = props => {
 
   const scoreCells = row => {
     return row.map((score, index) => {
-      return <td key={index} style={{ background: scoreToColor(score) }} />;
+      return <td key={index} style={{ background: colors[score - 1] }} />;
     });
   };
 
