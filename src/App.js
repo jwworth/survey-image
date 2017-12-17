@@ -16,7 +16,7 @@ const ScoreTable = () => {
     [0, 1, 2, 3, 0],
     [0, 5, 2, 3, 1],
     [0, 4, 2, 3, 0],
-    [0, 1, 2, 3, 5],
+    [null, 1, 2, 3, 5],
     [5, 1, 0, 0, 0],
   ];
 
@@ -32,8 +32,10 @@ const ScoreTable = () => {
         return '#C80000';
       case 4:
         return '#E80000';
-      default:
+      case 5:
         return '#FF0000';
+      default:
+        return '#fff';
     }
   };
 
