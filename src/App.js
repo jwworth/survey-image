@@ -5,11 +5,16 @@ class App extends Component {
   render() {
     return (
       <div>
+        <ScoreForm />
         <ScoreTable />
       </div>
     );
   }
 }
+
+const ScoreForm = () => {
+  return <form />;
+};
 
 const ScoreTable = () => {
   const scoreTree = [
