@@ -5,6 +5,19 @@ class App extends Component {
   render() {
     return (
       <div>
+        <div>
+          <h1>Survey Image</h1>
+          <h3>
+            For each question mark a number which represents your situation most closely:
+          </h3>
+          <p>
+            0 = Not at All
+            1 = Somewhat
+            2 = Moderately
+            3 = A Lot
+            4 = Extremely
+          </p>
+        </div>
         <ScoreForm />
         <ScoreTable />
       </div>
