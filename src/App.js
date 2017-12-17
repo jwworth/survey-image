@@ -94,7 +94,9 @@ const ScoreTable = () => {
         height: '500px',
       }}
     >
-      {scoreRow()}
+      <tbody>
+        {scoreRow()}
+      </tbody>
     </table>
   );
 };
