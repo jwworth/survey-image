@@ -44,18 +44,32 @@ class SurveyImage extends Component {
   }
 }
 
-const InnerScoreForm = props => {
-  const scoreTree = props.values.scoreTree;
+const InnerScoreForm = ({ values, setFieldValue, setValues }) => {
+  const { scoreTree } = values;
   let questionNumber = 0;
+
   return (
     <form>
-      {scoreTree.map(scoreRow => {
-        return scoreRow.map((score, index) => {
+      {scoreTree.map((scoreRow, scoreRowIndex) => {
+        return scoreRow.map((score, scoreIndex) => {
           questionNumber++;
+          const name = `scoreTree[${scoreRowIndex}][${scoreIndex}]`;
+
           return (
-            <div>
+            <div key={name}>
               <label>Question #{questionNumber}:</label>
-              <input type="text" value={score} />
+              <input
+                type="text"
+                name={name}
+                id={name}
+                value={scoreTree[scoreRowIndex][scoreIndex]}
+                onChange={e => {
+                  const { score } = e.target.value;
+                  let newScores = scoreTree;
+                  newScores[scoreRowIndex][scoreIndex] = score;
+                  setFieldValue('scoreTree', newScores);
+                }}
+              />
             </div>
           );
         });
@@ -65,7 +79,7 @@ const InnerScoreForm = props => {
 };
 
 const ScoreForm = withFormik({
-  mapPropsToValues: props => ({ scoreTree: props.scoreTree }),
+  mapPropsToValues: ({ scoreTree }) => ({ scoreTree }),
 })(InnerScoreForm);
 
 const ScoreTable = props => {
