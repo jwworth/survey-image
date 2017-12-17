@@ -66,7 +66,7 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
     'I have enough energy to maintain a satisfactory job performance.',
     'My life is way too stressful',
     'Considering my workload, there is no way I can do my job properly.',
-    'At the end of my working day, I find myself feeling emotionally empt',
+    'At the end of my working day, I find myself feeling emotionally empty.',
     'I feel that my job makes a difference.',
     'I have enough strength to satisfactorily perform all my duties.',
     'When I wake up in the morning, just thinking about the work that awaits me makes me feel tired.',
