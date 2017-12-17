@@ -14,26 +14,26 @@ class App extends Component {
 const ScoreTable = () => {
   const scoreTree = [
     [0, 1, 2, 3, 0],
-    [0, 1, 2, 3, 1],
+    [0, 5, 2, 3, 1],
     [0, 4, 2, 3, 0],
     [0, 1, 2, 3, 5],
-    [5, 1, 2, 3, 0],
+    [5, 1, 0, 0, 0],
   ];
 
   const scoreToColor = score => {
     switch (score) {
       case 0:
-        return 'red';
+        return '#680000';
       case 1:
-        return 'yellow';
+        return '#880000';
       case 2:
-        return 'green';
+        return '#A80000';
       case 3:
-        return 'blue';
+        return '#C80000';
       case 4:
-        return 'purple';
+        return '#E80000';
       default:
-        return 'black';
+        return '#FF0000';
     }
   };
 
