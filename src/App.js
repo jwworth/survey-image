@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
+import { withFormik } from 'formik';
 import './App.css';
 
 class App extends Component {
   render() {
+    return <SurveyImage />;
+  }
+}
+
+class SurveyImage extends Component {
+  constructor(props) {
+    super(props);
+
+    const emtpyArray = [];
+    emtpyArray.length = 5;
+
+    this.state = {
+      scoreTree: [emtpyArray, emtpyArray, emtpyArray, emtpyArray, emtpyArray],
+    };
+  }
+
+  render() {
     return (
       <div>
-        <div>
-          <h1>Survey Image</h1>
-          <h3>
-            For each question mark a number which represents your situation most closely:
-          </h3>
-          <p>
-            0 = Not at All
-            1 = Somewhat
-            2 = Moderately
-            3 = A Lot
-            4 = Extremely
-          </p>
-        </div>
+        <h1>Survey Image</h1>
+        <h3>
+          For each question mark a number which represents your situation most closely:
+        </h3>
+        <p>
+          0 = Not at All
+          1 = Somewhat
+          2 = Moderately
+          3 = A Lot
+          4 = Extremely
+        </p>
         <ScoreForm />
         <ScoreTable />
       </div>
