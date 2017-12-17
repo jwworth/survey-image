@@ -12,11 +12,14 @@ class SurveyImage extends Component {
   constructor(props) {
     super(props);
 
-    const emtpyArray = [];
-    emtpyArray.length = 5;
-
     this.state = {
-      scoreTree: [emtpyArray, emtpyArray, emtpyArray, emtpyArray, emtpyArray],
+      scoreTree: [
+        [0, 1, 2, 3, 0],
+        [0, 5, 2, 3, 1],
+        [0, 4, 2, 3, 0],
+        [null, 1, 2, 3, 5],
+        [5, 1, 0, 0, 0],
+      ],
     };
   }
 
@@ -35,7 +38,7 @@ class SurveyImage extends Component {
           4 = Extremely
         </p>
         <ScoreForm />
-        <ScoreTable />
+        <ScoreTable scoreTree={this.state.scoreTree} />
       </div>
     );
   }
@@ -45,15 +48,8 @@ const ScoreForm = () => {
   return <form />;
 };
 
-const ScoreTable = () => {
-  const scoreTree = [
-    [0, 1, 2, 3, 0],
-    [0, 5, 2, 3, 1],
-    [0, 4, 2, 3, 0],
-    [null, 1, 2, 3, 5],
-    [5, 1, 0, 0, 0],
-  ];
 
+const ScoreTable = props => {
   const scoreToColor = score => {
     switch (score) {
       case 0:
@@ -73,7 +69,7 @@ const ScoreTable = () => {
     }
   };
 
-  const scoreRow = () => {
+  const scoreRow = scoreTree => {
     return scoreTree.map((row, index) => {
       return <tr key={index}>{scoreCells(row)}</tr>;
     });
@@ -95,7 +91,7 @@ const ScoreTable = () => {
       }}
     >
       <tbody>
-        {scoreRow()}
+        {scoreRow(props.scoreTree)}
       </tbody>
     </table>
   );
