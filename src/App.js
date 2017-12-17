@@ -17,7 +17,7 @@ class App extends Component {
         [1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 5, 5, 5, 5],
       ],
     };
   }
@@ -157,23 +157,47 @@ const ScoreForm = withFormik({
 })(InnerScoreForm);
 
 const ScoreTable = props => {
-  const colors = ['#880000', '#A80000', '#C80000', '#E80000', '#FF0000'];
+  const color = (score, trIndex, tdIndex) => {
+    let colors = ['#fe2812', '#a7194b', '#8600af', '#3d01a4', '#0246fe'];
+
+    const positionString = [trIndex, tdIndex].join('');
+    switch (positionString) {
+      case '06':
+      case '13':
+      case '14':
+      case '24':
+      case '32':
+      case '36':
+      case '40':
+      case '52':
+      case '53':
+      case '54':
+      case '56':
+      case '62':
+        colors.reverse();
+        break;
+      default:
+        break;
+    }
+
+    return colors[score];
+  };
 
   const scoreRow = scoreTree => {
-    return scoreTree.map((row, index) => {
-      return <tr key={index}>{scoreCells(row)}</tr>;
+    return scoreTree.map((row, trIndex) => {
+      return <tr key={trIndex}>{scoreCells(row, trIndex)}</tr>;
     });
   };
 
-  const scoreCells = row => {
-    return row.map((score, index) => {
+  const scoreCells = (row, trIndex) => {
+    return row.map((score, tdIndex) => {
       return (
         <td
-          key={index}
+          key={tdIndex}
           style={{
-            background: colors[score - 1],
-            height: '100px',
-            width: '100px',
+            background: color(score - 1, trIndex, tdIndex),
+            height: '40px',
+            width: '40px',
           }}
         />
       );
@@ -184,9 +208,8 @@ const ScoreTable = props => {
     <table
       style={{
         margin: '0 auto',
-        border: '2px solid black',
-        width: '700px',
-        height: '700px',
+        width: '280x',
+        height: '280px',
       }}
     >
       <tbody>
