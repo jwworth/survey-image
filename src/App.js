@@ -37,17 +37,33 @@ class SurveyImage extends Component {
           3 = A Lot
           4 = Extremely
         </p>
-        <ScoreForm />
+        <ScoreForm scoreTree={this.state.scoreTree} />
         <ScoreTable scoreTree={this.state.scoreTree} />
       </div>
     );
   }
 }
 
-const ScoreForm = () => {
-  return <form />;
+const InnerScoreForm = props => {
+  const scoreTree = props.values.scoreTree;
+  return (
+    <form>
+      {scoreTree.map(scoreRow => {
+        return scoreRow.map(score => {
+          return (
+            <div>
+              <label>Question</label><input type="text" value={score} />
+            </div>
+          );
+        });
+      })}
+    </form>
+  );
 };
 
+const ScoreForm = withFormik({
+  mapPropsToValues: props => ({ scoreTree: props.scoreTree }),
+})(InnerScoreForm);
 
 const ScoreTable = props => {
   const scoreToColor = score => {
