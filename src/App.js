@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withFormik } from 'formik';
 
 import './normalize.css';
+import './skeleton.css';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -25,12 +27,13 @@ class App extends Component {
   };
 
   render() {
+    const { scoreTree } = this.state;
     return (
-      <div>
-        <h1>Burnout Test (Non-Service Fields)</h1>
-        <h3>
+      <div className="container">
+        <h2 className="title">Burnout Test (Non-Service Fields) Imager</h2>
+        <h6>
           For each question, choose the number which represents your answer:
-        </h3>
+        </h6>
         <p>
           1 = Strongly agree
           2 = Agree
@@ -38,11 +41,13 @@ class App extends Component {
           4 = Disagree
           5 = Strongly disagree
         </p>
-        <ScoreForm
-          scoreTree={this.state.scoreTree}
-          updateScoreTree={this.updateScoreTree}
-        />
-        <ScoreTable scoreTree={this.state.scoreTree} />
+        <div className="row">
+          <ScoreForm
+            scoreTree={scoreTree}
+            updateScoreTree={this.updateScoreTree}
+          />
+          <ScoreTable scoreTree={scoreTree} />
+        </div>
       </div>
     );
   }
@@ -101,41 +106,45 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
   ];
 
   return (
-    <form>
-      {scoreTree.map((scoreRow, scoreRowIndex) => {
-        return scoreRow.map((score, scoreIndex) => {
-          questionNumber++;
-          if (questionNumber <= 45) {
-            const name = `scoreTree[${scoreRowIndex}][${scoreIndex}]`;
-            const value = scoreTree[scoreRowIndex][scoreIndex];
+    <div className="six columns">
+      <form>
+        {scoreTree.map((scoreRow, scoreRowIndex) => {
+          return scoreRow.map((score, scoreIndex) => {
+            questionNumber++;
+            if (questionNumber <= 45) {
+              const name = `scoreTree[${scoreRowIndex}][${scoreIndex}]`;
+              const value = scoreTree[scoreRowIndex][scoreIndex];
 
-            return (
-              <div key={name}>
-                <label>{questionNumber}. {copy[questionNumber - 1]}</label>
-                <input
-                  type="range"
-                  max="5"
-                  min="1"
-                  step="1"
-                  name={name}
-                  value={value}
-                  onChange={e => {
-                    let newScores = scoreTree;
-                    const score = Number(e.target.value);
-                    newScores[scoreRowIndex][scoreIndex] = score;
-                    setFieldValue('scoreTree', newScores);
-                    updateScoreTree(newScores);
-                  }}
-                />
-                Score: {value}
-              </div>
-            );
-          } else {
-            return <div />;
-          }
-        });
-      })}
-    </form>
+              return (
+                <div key={name}>
+                  <label>{questionNumber}. {copy[questionNumber - 1]}</label>
+                  <input
+                    type="range"
+                    max="5"
+                    min="1"
+                    step="1"
+                    name={name}
+                    value={value}
+                    onChange={e => {
+                      let newScores = scoreTree;
+                      const score = Number(e.target.value);
+                      newScores[scoreRowIndex][scoreIndex] = score;
+                      setFieldValue('scoreTree', newScores);
+                      updateScoreTree(newScores);
+                    }}
+                  />
+                  <span className="score">
+                    Score: {value}
+                  </span>
+                </div>
+              );
+            } else {
+              return <div />;
+            }
+          });
+        })}
+      </form>
+    </div>
   );
 };
 

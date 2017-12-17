@@ -1,0 +1,12 @@
+h2.title {
+  padding-top: 20px;
+}
+
+span.score {
+  padding-left: 10px;
+}
+
+td {
+  padding: 0px;
+  border-bottom: 0px;
+}
