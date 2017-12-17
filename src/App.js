@@ -14,13 +14,13 @@ class SurveyImage extends Component {
 
     this.state = {
       scoreTree: [
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
       ],
     };
   }
@@ -37,11 +37,11 @@ class SurveyImage extends Component {
           For each question, choose the number which represents your answer:
         </h3>
         <p>
-          0 = Most of the time
-          1 = Often
-          2 = Sometimes
-          3 = Rarely
-          4 = Never
+          1 = Most of the time
+          2 = Often
+          3 = Sometimes
+          4 = Rarely
+          5 = Never
         </p>
         <ScoreForm
           scoreTree={this.state.scoreTree}
@@ -71,7 +71,7 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
               <input
                 type="range"
                 max="5"
-                min="0"
+                min="1"
                 step="1"
                 name={name}
                 value={value}
@@ -103,8 +103,6 @@ const ScoreForm = withFormik({
 const ScoreTable = props => {
   const scoreToColor = score => {
     switch (score) {
-      case 0:
-        return '#680000';
       case 1:
         return '#880000';
       case 2:
