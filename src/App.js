@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withFormik } from 'formik';
 
+import './normalize.css';
+
 class App extends Component {
   render() {
     return <SurveyImage />;
@@ -162,7 +164,16 @@ const ScoreTable = props => {
 
   const scoreCells = row => {
     return row.map((score, index) => {
-      return <td key={index} style={{ background: colors[score - 1] }} />;
+      return (
+        <td
+          key={index}
+          style={{
+            background: colors[score - 1],
+            height: '100px',
+            width: '100px',
+          }}
+        />
+      );
     });
   };
 
