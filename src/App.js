@@ -109,30 +109,34 @@ const InnerScoreForm = ({ setFieldValue, updateScoreTree, values }) => {
       {scoreTree.map((scoreRow, scoreRowIndex) => {
         return scoreRow.map((score, scoreIndex) => {
           questionNumber++;
-          const name = `scoreTree[${scoreRowIndex}][${scoreIndex}]`;
-          const value = scoreTree[scoreRowIndex][scoreIndex];
+          if (questionNumber <= 45) {
+            const name = `scoreTree[${scoreRowIndex}][${scoreIndex}]`;
+            const value = scoreTree[scoreRowIndex][scoreIndex];
 
-          return (
-            <div key={name}>
-              <label>{questionNumber}. {copy[questionNumber]}</label>
-              <input
-                type="range"
-                max="5"
-                min="1"
-                step="1"
-                name={name}
-                value={value}
-                onChange={e => {
-                  let newScores = scoreTree;
-                  const score = Number(e.target.value);
-                  newScores[scoreRowIndex][scoreIndex] = score;
-                  setFieldValue('scoreTree', newScores);
-                  updateScoreTree(newScores);
-                }}
-              />
-              Score: {value}
-            </div>
-          );
+            return (
+              <div key={name}>
+                <label>{questionNumber}. {copy[questionNumber - 1]}</label>
+                <input
+                  type="range"
+                  max="5"
+                  min="1"
+                  step="1"
+                  name={name}
+                  value={value}
+                  onChange={e => {
+                    let newScores = scoreTree;
+                    const score = Number(e.target.value);
+                    newScores[scoreRowIndex][scoreIndex] = score;
+                    setFieldValue('scoreTree', newScores);
+                    updateScoreTree(newScores);
+                  }}
+                />
+                Score: {value}
+              </div>
+            );
+          } else {
+            return <div />;
+          }
         });
       })}
     </form>
